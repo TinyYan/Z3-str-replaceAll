@@ -1,0 +1,17 @@
+(declare-const x String)
+(declare-const y String)
+(declare-const z String)
+(declare-const w String)
+(declare-const v String)
+
+(assert (RegexIn x (RegexStar (Str2Reg "ab"))))
+(assert (RegexIn y (RegexStar (Str2Reg "c"))))
+(assert (RegexIn z (Str2Reg "cccc")))
+(assert (RegexIn w (RegexConcat (Str2Reg "01") (RegexStar (Str2Reg "01")))))
+(assert (RegexIn v (Str2Reg "c")))
+
+(assert (= z (ReplaceAll x (Str2Reg "abab") y)))
+(assert (= y (ReplaceAll w (Str2Reg "01") v)))
+
+(check-sat)
+(get-model)

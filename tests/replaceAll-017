@@ -1,0 +1,30 @@
+(declare-variable x String)
+(declare-variable y String)
+(declare-variable x1 String)
+(declare-variable y1 String)
+(declare-variable z String)
+(declare-variable w String)
+(declare-variable v String)
+
+(assert (= x (ReplaceAll y (Str2Reg "010") z)))
+(assert (= y (ReplaceAll w (Str2Reg "1") v)))
+(assert (= w (ReplaceAll x1 (Str2Reg "00") y1)))
+
+(assert 
+(RegexIn x 
+(RegexConcat 
+    (RegexStar (RegexUnion (Str2Reg "0") (Str2Reg "1") ) )
+    (RegexUnion 
+        (RegexConcat (Str2Reg "00") (RegexStar (RegexUnion (Str2Reg "0")(Str2Reg "1") ) ) )
+        (RegexConcat (Str2Reg "11") (RegexStar (RegexUnion (Str2Reg "0")(Str2Reg "1") ) ) )
+    )
+) 
+)
+)
+(assert (RegexIn y (RegexStar (Str2Reg "01"))))
+(assert (RegexIn z (RegexStar (Str2Reg "10"))))
+(assert (RegexIn w (RegexStar (Str2Reg "1"))))
+(assert (RegexIn x1 (RegexStar (Str2Reg "0"))))
+
+(check-sat)
+(get-model)

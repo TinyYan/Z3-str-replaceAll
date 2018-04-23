@@ -1,0 +1,10 @@
+(declare-variable x String)
+(declare-variable y String)
+
+
+(assert (RegexIn x (RegexConcat (Str2Reg "ced") (RegexStar (Str2Reg "ced") ) )) ) 
+(assert (= x y))
+
+(check-sat)
+(get-model)
+

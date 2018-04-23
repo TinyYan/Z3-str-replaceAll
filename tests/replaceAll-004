@@ -1,0 +1,12 @@
+(declare-const x String)
+(declare-const y String)
+(declare-const z String)
+
+(assert (= x (ReplaceAll y (Str2Reg "a") z)))
+
+(assert (RegexIn y (RegexConcat (RegexStar (Str2Reg "a")) (RegexStar (Str2Reg "b")))))
+(assert (RegexIn z (Str2Reg "1")))
+(assert (RegexIn x (RegexConcat (Str2Reg "1111") (RegexStar (Str2Reg "1")))))
+
+(check-sat)
+(get-model)
