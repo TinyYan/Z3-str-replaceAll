@@ -1,8 +1,0 @@
-(declare-const x String)
-(declare-const y String)
-
-(declare-const __cOnStStR__x63_x65_x64 String)
-
-(assert (RegexIn x (RegexConcat (Str2Reg __cOnStStR__x63_x65_x64) (RegexStar (Str2Reg __cOnStStR__x63_x65_x64) ) )) )
-(assert (= x y))
-(check-sat)
